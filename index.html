@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BiDsburgh 2025 — Break It Down × Pittsburgh</title>
+<title>BiDsburgh 2026 — Break It Down Pittsburgh</title>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -26,6 +26,7 @@
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
     cursor: crosshair;
+    font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.2rem);
   }
 
   /* === NOISE OVERLAY === */
@@ -55,8 +56,8 @@
 
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    letter-spacing: 0.13em;
+    font-size: clamp(2.1rem, 1.85rem + 0.9vw, 2.8rem);
+    letter-spacing: 0.1em;
     color: var(--yellow);
   }
 
@@ -68,8 +69,8 @@
 
   .nav-links a {
     font-family: 'Space Mono', monospace;
-    font-size: 1.5rem;
-    letter-spacing: 0.4em;
+    font-size: clamp(0.95rem, 0.85rem + 0.22vw, 1.08rem);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--white);
     text-decoration: none;
@@ -106,20 +107,20 @@
   }
 
   .hero-bg-image {
-  position: absolute;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(300px, 40vw, 600px);
-  opacity: 0.85;
-  pointer-events: none;
-  object-fit: contain;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(300px, 40vw, 600px);
+    opacity: 0.85;
+    pointer-events: none;
+    object-fit: contain;
   } 
 
   .hero-eyebrow {
     font-family: 'Space Mono', monospace;
-    font-size: 2rem;
-    letter-spacing: 0.6em;
+    font-size: clamp(1rem, 0.9rem + 0.25vw, 1.12rem);
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--yellow);
     margin-bottom: 1.5rem;
@@ -129,7 +130,7 @@
 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 15vw, 14rem);
+    font-size: clamp(6.5rem, 14vw, 15rem);
     line-height: 0.88;
     letter-spacing: -0.02em;
     color: var(--white);
@@ -144,7 +145,7 @@
 
   .hero-subtitle {
     font-family: 'DM Sans', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-size: clamp(1.45rem, 1.15rem + 0.9vw, 1.95rem);
     font-weight: 300;
     color: rgba(245,240,232,0.65);
     margin-top: 2rem;
@@ -170,14 +171,14 @@
 
   .hero-meta-label {
     font-family: 'Space Mono', monospace;
-    font-size: 1.2rem;
-    letter-spacing: 0.4em;
+    font-size: clamp(0.85rem, 0.76rem + 0.18vw, 0.95rem);
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--yellow-dim);
   }
 
   .hero-meta-value {
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 1.15rem + 0.35vw, 1.5rem);
     font-weight: 600;
     color: var(--white);
   }
@@ -195,8 +196,8 @@
     background: var(--yellow);
     color: var(--black);
     font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
+    font-size: clamp(0.95rem, 0.84rem + 0.22vw, 1.08rem);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 700;
     padding: 1rem 2rem;
@@ -213,8 +214,8 @@
     background: transparent;
     color: var(--yellow);
     font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
+    font-size: clamp(0.95rem, 0.84rem + 0.22vw, 1.08rem);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 700;
     padding: 1rem 2rem;
@@ -258,7 +259,7 @@
     top: 50%;
     transform: translateY(-50%);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 7rem;
+    font-size: 8rem;
     color: rgba(0,0,0,0.06);
     pointer-events: none;
     letter-spacing: 0.1em;
@@ -275,7 +276,7 @@
 
   .countdown-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
+    font-size: clamp(2rem, 1.7rem + 0.8vw, 2.45rem);
     color: var(--black);
     letter-spacing: 0.1em;
     flex-shrink: 0;
@@ -298,14 +299,14 @@
 
   .countdown-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5rem;
+    font-size: clamp(3.4rem, 2.8rem + 1.2vw, 4.2rem);
     color: var(--yellow);
     line-height: 1;
   }
 
   .countdown-unit-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: clamp(0.82rem, 0.74rem + 0.16vw, 0.92rem);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: rgba(245,240,232,0.5);
@@ -330,14 +331,14 @@
 
   .section-number {
     font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
+    font-size: clamp(0.95rem, 0.86rem + 0.18vw, 1.05rem);
     color: var(--yellow-dim);
     letter-spacing: 0.15em;
   }
 
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(3.2rem, 5.8vw, 4.8rem);
     letter-spacing: 0.05em;
     color: var(--white);
   }
@@ -370,13 +371,13 @@
   }
 
   .info-card-icon {
-    font-size: 1.5rem;
+    font-size: clamp(2.2rem, 1.85rem + 0.7vw, 2.7rem);
     margin-bottom: 1rem;
   }
 
   .info-card-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.85rem, 0.78rem + 0.14vw, 0.94rem);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--yellow-dim);
@@ -384,14 +385,14 @@
   }
 
   .info-card-value {
-    font-size: 1.1rem;
+    font-size: clamp(1.5rem, 1.28rem + 0.45vw, 1.75rem);
     font-weight: 600;
     color: var(--white);
     line-height: 1.4;
   }
 
   .info-card-sub {
-    font-size: 0.85rem;
+    font-size: clamp(1.15rem, 1.02rem + 0.28vw, 1.32rem);
     color: rgba(245,240,232,0.5);
     margin-top: 0.4rem;
     font-weight: 300;
@@ -411,14 +412,14 @@
 
   .schedule-day-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
+    font-size: clamp(2.9rem, 2.4rem + 1vw, 3.5rem);
     color: var(--yellow);
     letter-spacing: 0.1em;
   }
 
   .schedule-day-date {
     font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
+    font-size: clamp(0.95rem, 0.86rem + 0.18vw, 1.05rem);
     color: rgba(245,240,232,0.4);
     letter-spacing: 0.1em;
   }
@@ -449,7 +450,7 @@
 
   .schedule-time {
     font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
+    font-size: clamp(0.98rem, 0.89rem + 0.2vw, 1.1rem);
     color: var(--yellow);
     padding-top: 0.15rem;
     letter-spacing: 0.05em;
@@ -457,13 +458,13 @@
 
   .schedule-event-title {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: clamp(1.35rem, 1.16rem + 0.38vw, 1.58rem);
     color: var(--white);
     line-height: 1.3;
   }
 
   .schedule-event-desc {
-    font-size: 0.85rem;
+    font-size: clamp(1.12rem, 1rem + 0.25vw, 1.28rem);
     color: rgba(245,240,232,0.5);
     margin-top: 0.3rem;
     font-weight: 300;
@@ -474,7 +475,7 @@
     background: rgba(255,215,0,0.12);
     color: var(--yellow);
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: clamp(0.8rem, 0.72rem + 0.16vw, 0.9rem);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 0.25rem 0.6rem;
@@ -483,16 +484,16 @@
   }
 
   .schedule-location {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.5);
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(0.8rem, 0.72rem + 0.16vw, 0.9rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.5);
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
   }
 
   /* === BUSKING / SOUND CHECK === */
@@ -502,7 +503,7 @@
 
   .subsection-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
+    font-size: clamp(2.6rem, 2.2rem + 0.8vw, 3.05rem);
     letter-spacing: 0.08em;
     color: var(--yellow);
     margin-bottom: 0.4rem;
@@ -510,7 +511,7 @@
 
   .subsection-desc {
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-size: clamp(0.9rem, 0.81rem + 0.18vw, 1rem);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(245,240,232,0.35);
@@ -543,7 +544,7 @@
   .soundcheck-header {
     background: rgba(255,215,0,0.07);
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.82rem, 0.75rem + 0.14vw, 0.9rem);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--yellow-dim);
@@ -551,19 +552,19 @@
 
   .soundcheck-time {
     font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
+    font-size: clamp(0.98rem, 0.89rem + 0.2vw, 1.08rem);
     color: var(--yellow);
     letter-spacing: 0.05em;
   }
 
   .soundcheck-group {
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: clamp(1.22rem, 1.08rem + 0.28vw, 1.38rem);
     color: var(--white);
   }
 
   .soundcheck-note {
-    font-size: 0.82rem;
+    font-size: clamp(1.05rem, 0.94rem + 0.2vw, 1.18rem);
     color: rgba(245,240,232,0.45);
     font-weight: 300;
   }
@@ -598,7 +599,7 @@
 
   .busking-pair-label {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.82rem, 0.75rem + 0.14vw, 0.9rem);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--yellow-dim);
@@ -613,14 +614,14 @@
 
   .busking-group-name {
     font-family: 'Black Han Sans', sans-serif;
-    font-size: 1.1rem;
+    font-size: clamp(1.45rem, 1.22rem + 0.45vw, 1.72rem);
     color: var(--white);
     line-height: 1.2;
   }
 
   .busking-plus {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: clamp(1.7rem, 1.45rem + 0.5vw, 2rem);
     color: var(--yellow);
   }
 
@@ -633,12 +634,12 @@
   }
 
   .busking-location-icon {
-    font-size: 1rem;
+    font-size: clamp(1.2rem, 1.05rem + 0.3vw, 1.38rem);
     flex-shrink: 0;
   }
 
   .busking-location-name {
-    font-size: 0.95rem;
+    font-size: clamp(1.22rem, 1.08rem + 0.28vw, 1.38rem);
     font-weight: 600;
     color: var(--white);
     margin-bottom: 0.2rem;
@@ -646,7 +647,7 @@
 
   .busking-location-sub {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.82rem, 0.75rem + 0.14vw, 0.9rem);
     letter-spacing: 0.08em;
     color: rgba(245,240,232,0.4);
   }
@@ -686,21 +687,21 @@
 
   .group-name {
     font-family: 'Black Han Sans', sans-serif;
-    font-size: 1.3rem;
+    font-size: clamp(1.7rem, 1.42rem + 0.55vw, 2rem);
     color: var(--white);
     line-height: 1.2;
     letter-spacing: 0.02em;
   }
 
   .group-school {
-    font-size: 0.85rem;
+    font-size: clamp(1.08rem, 0.96rem + 0.24vw, 1.22rem);
     color: rgba(245,240,232,0.5);
     font-weight: 300;
   }
 
   .group-type {
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
+    font-size: clamp(0.82rem, 0.75rem + 0.14vw, 0.9rem);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--yellow-dim);
@@ -714,7 +715,7 @@
     color: var(--yellow);
     text-decoration: none;
     font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
+    font-size: clamp(0.95rem, 0.86rem + 0.18vw, 1.05rem);
     letter-spacing: 0.05em;
     margin-top: auto;
     transition: color 0.2s;
@@ -730,15 +731,15 @@
   }
 
   .group-logo {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background: var(--white);
-  border: 1px solid rgba(255,215,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-bottom: 0.5rem;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--white);
+    border: 1px solid rgba(255,215,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
   }
 
   .group-logo img {
@@ -746,256 +747,6 @@
     height: 100%;
     object-fit: contain;
     padding: 1rem;
-  }
-
-  /* === CHURCH === */
-  .church-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .church-card {
-    background: var(--gray);
-    padding: 1.8rem;
-    border-left: 3px solid var(--yellow);
-    transition: background 0.2s;
-  }
-
-  .church-card:hover { background: var(--gray-mid); }
-
-  .church-name {
-    font-family: 'Black Han Sans', sans-serif;
-    font-size: 1.1rem;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-  }
-
-  .church-detail {
-    font-size: 0.85rem;
-    color: rgba(245,240,232,0.55);
-    margin-bottom: 0.25rem;
-    font-weight: 300;
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
-
-  .church-detail strong {
-    color: var(--yellow);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 400;
-  }
-
-  /* === SPOTIFY === */
-  .spotify-section {
-    background: var(--gray);
-    border: 1px solid rgba(255,215,0,0.12);
-    padding: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-    margin: 0 2.5rem;
-    max-width: 1100px;
-    margin: 0 auto 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .spotify-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at right, rgba(29,185,84,0.06), transparent 60%);
-    pointer-events: none;
-  }
-
-  .spotify-icon {
-    width: 64px;
-    height: 64px;
-    background: #1DB954;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .spotify-icon svg {
-    width: 36px;
-    height: 36px;
-    fill: white;
-  }
-
-  .spotify-text { flex: 1; min-width: 200px; }
-
-  .spotify-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #1DB954;
-    margin-bottom: 0.5rem;
-  }
-
-  .spotify-title {
-    font-family: 'Black Han Sans', sans-serif;
-    font-size: 1.4rem;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-  }
-
-  .spotify-desc {
-    font-size: 0.9rem;
-    color: rgba(245,240,232,0.5);
-    font-weight: 300;
-  }
-
-  /* === FAQ / MISC INFO === */
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .faq-item {
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    overflow: hidden;
-  }
-
-  .faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    text-align: left;
-    padding: 1.4rem 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    transition: color 0.2s;
-  }
-
-  .faq-question:hover { color: var(--yellow); }
-
-  .faq-toggle {
-    color: var(--yellow);
-    font-size: 1.4rem;
-    font-family: 'Space Mono', monospace;
-    transition: transform 0.3s;
-    flex-shrink: 0;
-    line-height: 1;
-  }
-
-  .faq-item.open .faq-toggle { transform: rotate(45deg); }
-
-  .faq-answer {
-    font-size: 0.9rem;
-    color: rgba(245,240,232,0.6);
-    font-weight: 300;
-    line-height: 1.7;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s;
-  }
-
-  .faq-item.open .faq-answer {
-    max-height: 300px;
-    padding-bottom: 1.4rem;
-  }
-
-  /* === FOOTER === */
-  footer {
-    background: var(--black);
-    border-top: 1px solid rgba(255,215,0,0.15);
-    padding: 3rem 2.5rem;
-    text-align: center;
-  }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
-    letter-spacing: 0.1em;
-    color: var(--yellow);
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-sub {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(245,240,232,0.3);
-    margin-bottom: 2rem;
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .footer-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(245,240,232,0.4);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--yellow); }
-
-  .footer-copy {
-    font-size: 0.8rem;
-    color: rgba(245,240,232,0.2);
-    font-weight: 300;
-  }
-
-  /* === ANIMATIONS === */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* Full width stripes between sections */
-  .full-stripe {
-    width: 100%;
-  }
-
-  @media (max-width: 600px) {
-    nav { padding: 1rem 1.2rem; }
-    .nav-links { gap: 1rem; }
-    .hero { padding: 7rem 1.2rem 3rem; }
-    section { padding: 4rem 1.2rem; }
-    .schedule-item { grid-template-columns: 90px 1fr; }
-    .spotify-section { margin: 0 1.2rem; }
-    .hero-meta { gap: 1.5rem; flex-wrap: wrap; }
-    .info-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
