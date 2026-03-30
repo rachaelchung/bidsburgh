@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BiDsburgh 2025 — Break It Down × Pittsburgh</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --yellow: #FFD700;
+    --yellow-bright: #FFE94D;
+    --yellow-dim: #B8960C;
+    --white: #F5F0E8;
+    --gray: #1a1a1a;
+    --gray-mid: #2e2e2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* === NOISE OVERLAY === */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* === NAV === */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,215,0,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    color: var(--yellow);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--yellow); }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(10rem, 20vw, 22rem);
+    color: rgba(255,215,0,0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-bg-image {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(300px, 40vw, 600px);
+  opacity: 0.85;
+  pointer-events: none;
+  object-fit: contain;
+  } 
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 15vw, 14rem);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-title span {
+    color: var(--yellow);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 300;
+    color: rgba(245,240,232,0.65);
+    margin-top: 2rem;
+    max-width: 480px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .hero-meta-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow-dim);
+  }
+
+  .hero-meta-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+
+  .btn-primary:hover { background: var(--yellow-bright); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--yellow);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border: 1px solid var(--yellow);
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,215,0,0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Yellow stripe */
+  .yellow-stripe {
+    height: 6px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--yellow) 0px,
+      var(--yellow) 40px,
+      var(--black) 40px,
+      var(--black) 50px
+    );
+    width: 100%;
+  }
+
+  /* === COUNTDOWN === */
+  .countdown-section {
+    background: var(--yellow);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .countdown-section::after {
+    content: 'COUNTDOWN';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    color: rgba(0,0,0,0.06);
+    pointer-events: none;
+    letter-spacing: 0.1em;
+  }
+
+  .countdown-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .countdown-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--black);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+
+  .countdown-units {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--black);
+    padding: 0.8rem 1.2rem;
+    min-width: 80px;
+  }
+
+  .countdown-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--yellow);
+    line-height: 1;
+  }
+
+  .countdown-unit-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-top: 0.3rem;
+  }
+
+  /* === SECTIONS === */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,215,0,0.2);
+    padding-bottom: 1.5rem;
+  }
+
+  .section-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--yellow-dim);
+    letter-spacing: 0.15em;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+
+  /* === INFO GRID === */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5px;
+    background: rgba(255,215,0,0.1);
+  }
+
+  .info-card {
+    background: var(--gray);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .info-card:hover { background: var(--gray-mid); }
+
+  .info-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--yellow);
+  }
+
+  .info-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-card-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  .info-card-sub {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.5);
+    margin-top: 0.4rem;
+    font-weight: 300;
+  }
+
+  /* === SCHEDULE === */
+  .schedule-day {
+    margin-bottom: 3rem;
+  }
+
+  .schedule-day-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .schedule-day-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--yellow);
+    letter-spacing: 0.1em;
+  }
+
+  .schedule-day-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 0.1em;
+  }
+
+  .schedule-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,215,0,0.15);
+  }
+
+  .schedule-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    align-items: start;
+    transition: background 0.15s;
+  }
+
+  .schedule-item:hover {
+    background: rgba(255,215,0,0.03);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  .schedule-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--yellow);
+    padding-top: 0.15rem;
+    letter-spacing: 0.05em;
+  }
+
+  .schedule-event-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .schedule-event-desc {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.5);
+    margin-top: 0.3rem;
+    font-weight: 300;
+  }
+
+  .schedule-tag {
+    display: inline-block;
+    background: rgba(255,215,0,0.12);
+    color: var(--yellow);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(255,215,0,0.2);
+  }
+
+  .schedule-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.5);
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  }
+
+  /* === BUSKING / SOUND CHECK === */
+  .subsection-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .subsection-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    color: var(--yellow);
+    margin-bottom: 0.4rem;
+  }
+
+  .subsection-desc {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+  }
+
+  .soundcheck-table {
+    width: 100%;
+    border: 1px solid rgba(255,215,0,0.1);
+    overflow: hidden;
+  }
+
+  .soundcheck-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1rem;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    align-items: center;
+    transition: background 0.15s;
+  }
+
+  .soundcheck-row:last-child {
+    border-bottom: none;
+  }
+
+  .soundcheck-row:hover:not(.soundcheck-header) {
+    background: rgba(255,215,0,0.03);
+  }
+
+  .soundcheck-header {
+    background: rgba(255,215,0,0.07);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--yellow-dim);
+  }
+
+  .soundcheck-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--yellow);
+    letter-spacing: 0.05em;
+  }
+
+  .soundcheck-group {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+
+  .soundcheck-note {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.45);
+    font-weight: 300;
+  }
+
+  .soundcheck-buffer {
+    background: rgba(255,255,255,0.02);
+    opacity: 0.6;
+  }
+
+  .busking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .busking-card {
+    background: var(--gray);
+    border: 1px solid rgba(255,215,0,0.08);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .busking-card:hover {
+    border-color: rgba(255,215,0,0.3);
+    transform: translateY(-3px);
+  }
+
+  .busking-pair-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow-dim);
+  }
+
+  .busking-groups {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .busking-group-name {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .busking-plus {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--yellow);
+  }
+
+  .busking-location {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .busking-location-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .busking-location-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+
+  .busking-location-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.4);
+  }
+
+  /* === GROUPS === */
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .group-card {
+    background: var(--gray);
+    border: 1px solid rgba(255,215,0,0.08);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .group-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .group-card:hover { border-color: rgba(255,215,0,0.3); transform: translateY(-4px); }
+  .group-card:hover::after { transform: scaleX(1); }
+
+  .group-name {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  .group-school {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.5);
+    font-weight: 300;
+  }
+
+  .group-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--yellow-dim);
+    padding: 0.2rem 0;
+  }
+
+  .group-insta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--yellow);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    margin-top: auto;
+    transition: color 0.2s;
+  }
+
+  .group-insta:hover { color: var(--yellow-bright); }
+
+  .group-insta svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .group-logo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--white);
+  border: 1px solid rgba(255,215,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  }
+
+  .group-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+  }
+
+  /* === CHURCH === */
+  .church-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .church-card {
+    background: var(--gray);
+    padding: 1.8rem;
+    border-left: 3px solid var(--yellow);
+    transition: background 0.2s;
+  }
+
+  .church-card:hover { background: var(--gray-mid); }
+
+  .church-name {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .church-detail {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.55);
+    margin-bottom: 0.25rem;
+    font-weight: 300;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .church-detail strong {
+    color: var(--yellow);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* === SPOTIFY === */
+  .spotify-section {
+    background: var(--gray);
+    border: 1px solid rgba(255,215,0,0.12);
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin: 0 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotify-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at right, rgba(29,185,84,0.06), transparent 60%);
+    pointer-events: none;
+  }
+
+  .spotify-icon {
+    width: 64px;
+    height: 64px;
+    background: #1DB954;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .spotify-icon svg {
+    width: 36px;
+    height: 36px;
+    fill: white;
+  }
+
+  .spotify-text { flex: 1; min-width: 200px; }
+
+  .spotify-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #1DB954;
+    margin-bottom: 0.5rem;
+  }
+
+  .spotify-title {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .spotify-desc {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.5);
+    font-weight: 300;
+  }
+
+  /* === FAQ / MISC INFO === */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    overflow: hidden;
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    padding: 1.4rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.2s;
+  }
+
+  .faq-question:hover { color: var(--yellow); }
+
+  .faq-toggle {
+    color: var(--yellow);
+    font-size: 1.4rem;
+    font-family: 'Space Mono', monospace;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+  .faq-answer {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.6);
+    font-weight: 300;
+    line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding-bottom: 1.4rem;
+  }
+
+  /* === FOOTER === */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(255,215,0,0.15);
+    padding: 3rem 2.5rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.1em;
+    color: var(--yellow);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+    margin-bottom: 2rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .footer-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--yellow); }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.2);
+    font-weight: 300;
+  }
+
+  /* === ANIMATIONS === */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Full width stripes between sections */
+  .full-stripe {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 7rem 1.2rem 3rem; }
+    section { padding: 4rem 1.2rem; }
+    .schedule-item { grid-template-columns: 90px 1fr; }
+    .spotify-section { margin: 0 1.2rem; }
+    .hero-meta { gap: 1.5rem; flex-wrap: wrap; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">BiDsburgh</span>
+  <ul class="nav-links">
+    <li><a href="#info">Info</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#busking">Busking & Sound Check</a></li>
+    <li><a href="#groups">Groups</a></li>
+    <li><a href="#church">Sunday</a></li>
+    <li><a href="#playlist">Playlist</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="max-width:none; padding-left:2.5rem; padding-right:2.5rem;">
+  <img src="images/BIDbridge.png" alt="BiDsburgh logo" class="hero-bg-image" aria-hidden="true">
+  <div class="hero-eyebrow">Break It Down × Pittsburgh, PA</div>
+  <h1 class="hero-title">
+    BiDsburgh
+  </h1>
+  <p class="hero-subtitle">
+    Welcome to Break It Down Pittsburgh! Our theme this year is "Bridge the Gap"!
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Date</span>
+      <span class="hero-meta-value">April 11, 2026</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Time</span>
+      <span class="hero-meta-value">4:30PM - 7:30PM</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Location</span>
+      <span class="hero-meta-value">First Baptist Church Pittsburgh</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#schedule" class="btn-primary">View Schedule</a>
+    <a href="#groups" class="btn-outline">Meet the Groups</a>
+  </div>
+</section>
+
+<!-- STRIPE -->
+<div class="yellow-stripe full-stripe"></div>
+
+<!-- COUNTDOWN -->
+<div class="countdown-section">
+  <div class="countdown-inner">
+    <span class="countdown-label">Event Starts In</span>
+    <div class="countdown-units" id="countdown">
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-days">--</span>
+        <span class="countdown-unit-label">Days</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-hours">--</span>
+        <span class="countdown-unit-label">Hours</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-mins">--</span>
+        <span class="countdown-unit-label">Mins</span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-num" id="cd-secs">--</span>
+        <span class="countdown-unit-label">Secs</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THEME / VERSE -->
+<div id="theme">
+  <section style="padding-top: 3rem; padding-bottom: 3rem;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+      
+      <div class="reveal">
+        <div style="font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--yellow-dim); margin-bottom:1rem;">This Year's Theme</div>
+        <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,5vw,4rem); letter-spacing:0.05em; color:var(--white); line-height:1; margin-bottom:1.5rem;">BRIDGE THE<br><span style="color:var(--yellow);">GAP</span></h2>
+        <p style="font-size:0.95rem; color:rgba(245,240,232,0.55); font-weight:300; line-height:1.8; max-width:420px;">
+          This year's theme is all about what it means to truly be reconciled to God. Jesus bridges the gap for us so that we may live in eternal life with Him.
+        </p>
+      </div>
+
+      <div class="reveal" style="border-left: 3px solid var(--yellow); padding-left: 2.5rem;">
+        <div style="font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--yellow-dim); margin-bottom:1.5rem;">This Year's Verse</div>
+        <blockquote style="font-family:'DM Sans',sans-serif; font-size:clamp(1.1rem,2vw,1.4rem); font-style:italic; font-weight:300; color:var(--white); line-height:1.7; margin-bottom:1.5rem;">
+          "For there is one God, and there is one mediator between God and men, the man Christ Jesus, who gave himself as a ransom for all, which is the testimony given at the proper time."
+        </blockquote>
+        <div style="font-family:'Space Mono',monospace; font-size:0.7rem; letter-spacing:0.15em; color:var(--yellow); text-transform:uppercase;">— 1 Timothy 2:5-6</div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- INFO -->
+<div id="info">
+  <section>
+    <div class="section-header reveal">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Event Info</h2>
+    </div>
+    <div class="info-grid reveal">
+      <div class="info-card">
+        <div class="info-card-icon">📍</div>
+        <div class="info-card-label">Rehearsal Room</div>
+        <div class="info-card-value">Carnegie Mellon University</div>
+        <div class="info-card-sub">Porter Hall Room 100<br>4815 Frew St</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🎶</div>
+        <div class="info-card-label">Concert Venue</div>
+        <div class="info-card-value">First Baptist Church Pittsburgh</div>
+        <div class="info-card-sub">159 N Bellefield Ave</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🚗</div>
+        <div class="info-card-label">Parking</div>
+        <div class="info-card-value">idk</div>
+        <div class="info-card-sub">Morewood Lot maybe?</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">??</div>
+        <div class="info-card-label">Section 4</div>
+        <div class="info-card-value">I feel like four would make it nice</div>
+        <div class="info-card-sub">idek</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- STRIPE -->
+<div class="yellow-stripe full-stripe"></div>
+
+<!-- SCHEDULE -->
+<div id="schedule">
+  <section>
+    <div class="section-header reveal">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Weekend Schedule</h2>
+    </div>
+
+    <!-- Friday -->
+    <div class="schedule-day reveal">
+      <div class="schedule-day-header">
+        <span class="schedule-day-name">Friday</span>
+        <span class="schedule-day-date">April 10</span>
+        <div class="schedule-line"></div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">8:00 PM</span>
+        <div>
+          <div class="schedule-event-title">Welcome Reception</div>
+          <div class="schedule-event-desc">Join us for some games, snacks, and chances to connect with our other groups!</div>
+          <span class="schedule-location">📍 Cohon University Center Danforth Conference Room </span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">10 PM</span>
+        <div>
+          <div class="schedule-event-title">Prayer & Discussion</div>
+          <div class="schedule-event-desc">Discuss our hopes for the weekend and other prayer requests</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">11 PM</span>
+        <div>
+          <div class="schedule-event-title">Q&A Session</div>
+          <div class="schedule-event-desc">Get some last questions answered before concert day!</div>
+          <span class="schedule-tag">Optional</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saturday -->
+    <div class="schedule-day reveal">
+      <div class="schedule-day-header">
+        <span class="schedule-day-name">Saturday</span>
+        <span class="schedule-day-date">April 11</span>
+        <div class="schedule-line"></div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">8:00 AM</span>
+        <div>
+          <div class="schedule-event-title">Breakfast</div>
+          <div class="schedule-event-desc">Come get some free breakfast before we start the day</div>
+          <span class="schedule-tag">Food Provided</span>
+          <span class="schedule-location">📍 Carnegie Mellon Porter 100 </span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">8:30 AM</span>
+        <div>
+          <div class="schedule-event-title">Warm-ups</div>
+          <div class="schedule-event-desc">Preparing for our whole group rehearsal</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">9:00 AM</span>
+        <div>
+          <div class="schedule-event-title">Whole Group Rehearsal</div>
+          <div class="schedule-event-desc">Rehearse for Bridge Over Troubled Water and TLBY!</div>
+          <span class="schedule-location">📍 Carnegie Mellon Porter 100 </span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">10:30 AM</span>
+        <div>
+          <div class="schedule-event-title">Walk to Venue</div>
+          <div class="schedule-event-desc">It will be a short walk to our venue for the concert.</div>
+          <span class="schedule-location">📍 First Baptist Church Pittsburgh </span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">11 AM - 3:30 PM</span>
+        <div>
+          <div class="schedule-event-title">Busking/Sound Check/Lunch</div>
+          <div class="schedule-event-desc">See details below for more info!</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">3:30 PM</span>
+        <div>
+          <div class="schedule-event-title">All Groups Return</div>
+          <div class="schedule-event-desc">All groups return to First Baptist Church for the concert</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">4:30 PM</span>
+        <div>
+          <div class="schedule-event-title"><strong>Concert Start!</strong></div>
+          <div class="schedule-event-desc">Official start time of the concert</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">7:30 PM</span>
+        <div>
+          <div class="schedule-event-title">Dinner</div>
+          <div class="schedule-event-desc">Explore Pittsburgh and feel free to grab dinner with some new friends!</div>
+          <span class="schedule-tag">On Your Own</span>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">9:30 PM</span>
+        <div>
+          <div class="schedule-event-title">KARAOKE</div>
+          <div class="schedule-event-desc">Have some late night fun singing karaoke with your fellow A Capella groups!</div>
+          <span class="schedule-tag">Optional</span>
+          <span class="schedule-location">📍 TBD </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sunday -->
+    <div class="schedule-day reveal">
+      <div class="schedule-day-header">
+        <span class="schedule-day-name">Sunday</span>
+        <span class="schedule-day-date">April 13</span>
+        <div class="schedule-line"></div>
+      </div>
+      <div class="schedule-item">
+        <span class="schedule-time">Various Times</span>
+        <div>
+          <div class="schedule-event-title">Church Services</div>
+          <div class="schedule-event-desc">See below for many Church options to attend, or feel free to reach out to anybody in a host group!</div>
+        </div>
+    </div>
+  </section>
+</div>
+
+<!-- STRIPE -->
+<div class="yellow-stripe full-stripe"></div>
+
+<!-- BUSKING / SOUND CHECK -->
+<div id="busking">
+  <section>
+    <div class="section-header reveal">
+      <span class="section-number">02.5</span>
+      <h2 class="section-title">Busking & Sound Check</h2>
+    </div>
+
+    <!-- SOUND CHECK SCHEDULE -->
+    <div class="subsection-header reveal">
+      <h3 class="subsection-title">Sound Check Schedule</h3>
+      <p class="subsection-desc">Sound Checks will be staggered throughout the day. Make sure to plan ahead with your group pair for busking and lunch!</p>
+    </div>
+
+    <div class="soundcheck-table reveal">
+      <div class="soundcheck-row soundcheck-header">
+        <span>Time Slot</span>
+        <span>Group</span>
+      </div>
+      <div class="soundcheck-row">
+        <span class="soundcheck-time">11:00 – 11:15 AM</span>
+        <span class="soundcheck-group">Joyful Noise</span>
+    
+      </div>
+      <div class="soundcheck-row">
+        <span class="soundcheck-time">12:00 – 12:30 PM</span>
+        <span class="soundcheck-group">Mosaic + Living Water</span>
+
+      </div>
+      <div class="soundcheck-row">
+        <span class="soundcheck-time">12:45 – 1:15 PM</span>
+        <span class="soundcheck-group">Full Measure + First Light</span>
+       
+      </div>
+      <div class="soundcheck-row">
+        <span class="soundcheck-time">1:30 – 1:45 PM</span>
+        <span class="soundcheck-group">Jubilation! + Adoremus</span>
+       
+      </div>
+      <div class="soundcheck-row">
+        <span class="soundcheck-time">2:15 – 2:45 PM</span>
+        <span class="soundcheck-group">Kindred Spirit + Against the Current</span>
+        
+      </div>
+      <div class="soundcheck-row">
+        <span class="soundcheck-time">3:00 – 3:30 PM</span>
+        <span class="soundcheck-group">Good News + Mustard Seed</span>
+        
+      </div>
+      <div class="soundcheck-row soundcheck-buffer">
+        <span class="soundcheck-time">3:30 – 4:00 PM</span>
+        <span class="soundcheck-group">Buffer / Overflow</span>
+        
+      </div>
+    </div>
+
+    <!-- BUSKING PAIRS -->
+    <div class="subsection-header reveal" style="margin-top: 4rem;">
+      <h3 class="subsection-title">Busking Pairs</h3>
+      <p class="subsection-desc">Groups are paired up to busk together around Pittsburgh before the concert. Find your pair and location below! You will be accompained with two Joyful Noise members.</p>
+    </div>
+
+    <div class="busking-grid reveal">
+      <div class="busking-card">
+        <div class="busking-pair-label">Pair A</div>
+        <div class="busking-groups">
+          <span class="busking-group-name">Mosaic (Pitt)</span>
+          <span class="busking-plus">×</span>
+          <span class="busking-group-name">Living Water (Yale)</span>
+        </div>
+        <div class="busking-location">
+          <span class="busking-location-icon">📍</span>
+          <div>
+            <div class="busking-location-name">TBD</div>
+            <div class="busking-location-sub">Address TBD</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="busking-card">
+        <div class="busking-pair-label">Pair B</div>
+        <div class="busking-groups">
+          <span class="busking-group-name">Full Measure (UPenn)</span>
+          <span class="busking-plus">×</span>
+          <span class="busking-group-name">First Light (Rutgers)</span>
+        </div>
+        <div class="busking-location">
+          <span class="busking-location-icon">📍</span>
+          <div>
+            <div class="busking-location-name">TBD</div>
+            <div class="busking-location-sub">Address TBD</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="busking-card">
+        <div class="busking-pair-label">Pair C</div>
+        <div class="busking-groups">
+          <span class="busking-group-name">Jubilation! (Columbia)</span>
+          <span class="busking-plus">×</span>
+          <span class="busking-group-name">Adoremus (John Hopkins)</span>
+        </div>
+        <div class="busking-location">
+          <span class="busking-location-icon">📍</span>
+          <div>
+            <div class="busking-location-name">TBD</div>
+            <div class="busking-location-sub">Address TBD</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="busking-card">
+        <div class="busking-pair-label">Pair D</div>
+        <div class="busking-groups">
+          <span class="busking-group-name">Kindred Spirit (Princeton)</span>
+          <span class="busking-plus">×</span>
+          <span class="busking-group-name">Against the Current (BC)</span>
+        </div>
+        <div class="busking-location">
+          <span class="busking-location-icon">📍</span>
+          <div>
+            <div class="busking-location-name">TBD</div>
+            <div class="busking-location-sub">Address TBD</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="busking-card">
+        <div class="busking-pair-label">Pair E</div>
+        <div class="busking-groups">
+          <span class="busking-group-name">Good News (UMich)</span>
+          <span class="busking-plus">×</span>
+          <span class="busking-group-name">Mustard Seed (BU)</span>
+        </div>
+        <div class="busking-location">
+          <span class="busking-location-icon">📍</span>
+          <div>
+            <div class="busking-location-name">TBD</div>
+            <div class="busking-location-sub">Address TBD</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="reveal" style="margin-top: 1.5rem; font-family:'Space Mono',monospace; font-size:0.65rem; color:rgba(245,240,232,0.3); letter-spacing:0.1em; text-transform:uppercase;">
+      Locations to be decided soon! Check back often for updates!
+    </p>
+
+  </section>
+</div>
+
+<!-- STRIPE -->
+<div class="yellow-stripe full-stripe"></div>
+
+<!-- GROUPS -->
+<div id="groups">
+  <section>
+    <div class="section-header reveal">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Attending Groups</h2>
+    </div>
+    <div class="groups-grid reveal">
+      <!-- Hosting group -->
+      <div class="group-card">
+        <div class="group-logo">
+          <img src="images/joyfulnoise.png" alt="Group Name logo">
+        </div>
+        <div class="group-type">Host Group</div>
+        <div class="group-name">Joyful Noise</div>
+        <div class="group-school">Carnegie Mellon University</div>
+        <a href="https://instagram.com/cmujoyfulnoise" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @cmujoyfulnoise
+        </a>
+      </div>
+
+      <div class="group-card">
+        <div class="group-logo">
+          <img src="images/mosaic.png" alt="Group Name logo">
+        </div>
+        <div class="group-type">Host Group</div>
+        <div class="group-name">Mosaic</div>
+        <div class="group-school">University of Pittsburgh</div>
+        <a href="https://instagram.com/mosaic_acapella" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @mosaic_acapella
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/adoremus.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">Adoremus</div>
+        <div class="group-school">John Hopkins University</div>
+        <a href="https://instagram.com/adoremusjhu" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @adoremusjhu
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/atc.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">Against the Current</div>
+        <div class="group-school">Boston College</div>
+        <a href="https://instagram.com/bc_atcurrent" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @bc_atcurrent
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/firstlight.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">First Light</div>
+        <div class="group-school">Rutgers University</div>
+        <a href="https://instagram.com/firstlightru" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @firstlightru
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/fullmeasure.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">Full Measure</div>
+        <div class="group-school">University of Pennsylvania</div>
+        <a href="https://instagram.com/upenn.fullmeasure" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @upenn.fullmeasure
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/goodnews.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">Good News</div>
+        <div class="group-school">University of Michigan</div>
+        <a href="https://instagram.com/goodnewsacappella" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @goodnewsacappella
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/jubilation.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">Jubilation!</div>
+        <div class="group-school">Columbia University</div>
+        <a href="https://instagram.com/jubilationcu" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @jubilationcu
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/kindredspirit.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">Kindred Spirit</div>
+        <div class="group-school">Princeton University</div>
+        <a href="https://instagram.com/princetonkindredspirit" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @princetonkindredspirit
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/livingwater.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">Living Water</div>
+        <div class="group-school">Yale University</div>
+        <a href="https://instagram.com/livingwateratyale" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @livingwateratyale
+        </a>
+      </div>
+
+      <div class="group-card">
+         <div class="group-logo">
+          <img src="images/bums.png" alt="Group Name logo">
+        </div>
+        <div class="group-name">Mustard Seed</div>
+        <div class="group-school">Boston University</div>
+        <a href="https://instagram.com/bumustardseed" target="_blank" class="group-insta">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @bumustardseed
+        </a>
+      </div>
+      
+    </div>
+    <p style="margin-top:1.5rem; font-family:'Space Mono',monospace; font-size:0.65rem; color:rgba(245,240,232,0.3); letter-spacing:0.1em; text-align:center; text-transform:uppercase;">Thank you to all of our amazing groups!</p>
+  </section>
+</div>
+
+<!-- STRIPE -->
+<div class="yellow-stripe full-stripe"></div>
+
+<!-- SPOTIFY -->
+<div id="playlist" style="padding: 4rem 0;">
+  <div style="max-width:1100px; margin:0 auto; padding: 0 2.5rem;">
+    <div class="section-header reveal">
+      <span class="section-number">04</span>
+      <h2 class="section-title">BIDsburgh Playlist</h2>
+    </div>
+  </div>
+  <div class="spotify-section reveal" style="margin: 0 2.5rem; max-width: calc(1100px); margin-left: auto; margin-right: auto;">
+    <div class="spotify-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+    </div>
+    <div class="spotify-text">
+      <div class="spotify-label">Official Playlist</div>
+      <div class="spotify-title">BIDsburgh 2026 groups playlist</div>
+      <div class="spotify-desc">Songs from all attending groups!</div>
+    </div>
+    <a href="https://open.spotify.com/playlist/0NeiIR2QhcNITxfkBKBneT?si=96VOKzbJTcSDpD_RNSkyLw" target="_blank" class="btn-primary" style="flex-shrink:0;">
+      Open on Spotify ↗
+    </a>
+  </div>
+</div>
+
+
+<!-- STRIPE -->
+<div class="yellow-stripe full-stripe"></div>
+
+<!-- SUNDAY CHURCH -->
+<div id="church">
+  <section>
+    <div class="section-header reveal">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Sunday Church Options</h2>
+    </div>
+    <p class="reveal" style="color:rgba(245,240,232,0.5); font-size:0.9rem; margin-bottom:2.5rem; font-weight:300; max-width:600px; line-height:1.7;">
+      Here are some church suggestions for Sunday morning! Feel free to reach out to any of our host groups' members for more info.
+    </p>
+    <div class="church-grid reveal">
+      <div class="church-card">
+        <div class="church-name">Rennaissance Church</div>
+        <div class="church-detail"><strong>Service</strong> 10:00 AM</div>
+        <div class="church-detail"><strong>Distance</strong> ~20 min walk from CMU</div>
+        <div class="church-detail"><strong>Address</strong> 250 S Pacific Ave, Pittsburgh, PA</div>
+      </div>
+      <div class="church-card">
+        <div class="church-name">City Reformed Presbyterian Church</div>
+        <div class="church-detail"><strong>Service</strong> 10:15 AM</div>
+        <div class="church-detail"><strong>Distance</strong> ~10 min walk from CMU</div>
+        <div class="church-detail"><strong>Address</strong> 5059 Ellsworth Ave, Pittsburgh, PA</div>
+      </div>
+      <div class="church-card">
+        <div class="church-name">Korean Central Church</div>
+        <div class="church-detail"><strong>Service</strong> 9:00 AM</div>
+        <div class="church-detail"><strong>Distance</strong> ~15 min walk from CMU</div>
+        <div class="church-detail"><strong>Address</strong> 821 South Aiken Avenue, Pittsburgh, PA</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- STRIPE -->
+<div class="yellow-stripe full-stripe"></div>
+
+<!-- FAQ -->
+<div id="faq">
+  <section>
+    <div class="section-header reveal">
+      <span class="section-number">06</span>
+      <h2 class="section-title">Good to Know</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          I'm not sure we having an FAQs rn
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">But if we do we can add this section back</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">BiDsburgh</span>
+  <div class="footer-sub">Break It Down × Pittsburgh, PA · April 2026</div>
+  <div class="footer-links">
+    <a href="#info">Info</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#groups">Groups</a>
+    <a href="#busking">Busking</a>
+    <a href="#church">Sunday</a>
+    <a href="#playlist">Playlist</a>
+    <a href="https://instagram.com/breakitdownorg" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-copy">Made with assistance from Claude Sonnet 4.6</div>
+</footer>
+
+<script>
+  // COUNTDOWN
+  function updateCountdown() {
+    const eventDate = new Date('2026-04-11T16:30:00');
+    const now = new Date();
+    const diff = eventDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2rem;color:var(--black);letter-spacing:0.1em;">It\'s Happening! 🎉</div>';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+    document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ TOGGLE
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // Smooth nav highlight on scroll
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--yellow)' : '';
+      link.style.opacity = link.getAttribute('href') === '#' + current ? '1' : '';
+    });
+  });
+</script>
+</body>
+</html>
