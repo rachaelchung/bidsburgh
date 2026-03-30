@@ -826,6 +826,125 @@
     gap: 4rem;
     align-items: center;
   }
+
+  /* === CHURCH === */
+.church-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.church-card {
+  background: var(--gray);
+  padding: 1.8rem;
+  border-left: 3px solid var(--yellow);
+  transition: background 0.2s;
+}
+
+.church-card:hover {
+  background: var(--gray-mid);
+}
+
+.church-name {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 1.1rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.church-detail {
+  font-size: 0.85rem;
+  color: rgba(245,240,232,0.55);
+  margin-bottom: 0.25rem;
+  font-weight: 300;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.church-detail strong {
+  color: var(--yellow);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* === SPOTIFY === */
+.spotify-section {
+  background: var(--gray);
+  border: 1px solid rgba(255,215,0,0.12);
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.spotify-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at right, rgba(29,185,84,0.06), transparent 60%);
+  pointer-events: none;
+}
+
+.spotify-icon {
+  width: 64px;
+  height: 64px;
+  background: #1DB954;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.spotify-icon svg {
+  width: 36px;
+  height: 36px;
+  fill: white;
+}
+
+.spotify-text {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.spotify-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #1DB954;
+  margin-bottom: 0.5rem;
+}
+
+.spotify-title {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.spotify-desc {
+  font-size: 0.9rem;
+  color: rgba(245,240,232,0.5);
+  font-weight: 300;
+}
+
+
+
+  
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
