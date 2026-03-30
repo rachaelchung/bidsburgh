@@ -942,7 +942,76 @@
   font-weight: 300;
 }
 
+/* === FOOTER === */
+footer {
+  background: var(--black);
+  border-top: 1px solid rgba(255,215,0,0.15);
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+}
 
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 2.2rem + 1.2vw, 3.8rem);
+  letter-spacing: 0.1em;
+  color: var(--yellow);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.footer-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.75rem, 0.65rem + 0.2vw, 0.9rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.35);
+  margin-bottom: 2rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.footer-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.75rem, 0.65rem + 0.2vw, 0.9rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.45);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 1px;
+  background: var(--yellow);
+  transition: width 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: var(--yellow);
+}
+
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+.footer-copy {
+  font-size: clamp(0.7rem, 0.6rem + 0.2vw, 0.85rem);
+  color: rgba(245,240,232,0.25);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
 
   
 @keyframes fadeUp {
@@ -965,9 +1034,7 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-}
 
-  @media (max-width: 768px) {
   .hero {
     padding: 6.5rem 1rem 2.5rem;
     min-height: auto;
@@ -1073,6 +1140,18 @@
   .countdown-unit {
     min-width: 68px;
     padding: 0.7rem 0.8rem;
+  }
+  
+  footer {
+    padding: 2.5rem 1rem;
+  }
+
+  .footer-links {
+    gap: 1rem;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
   }
 }
 </style>
