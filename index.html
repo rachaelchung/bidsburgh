@@ -42,44 +42,112 @@
 
   /* === NAV === */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 2.5rem;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,215,0,0.15);
-  }
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2.5rem;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,215,0,0.15);
+}
 
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.1rem, 1.85rem + 0.9vw, 2.8rem);
-    letter-spacing: 0.1em;
-    color: var(--yellow);
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 1.4rem + 1vw, 2.4rem);
+  letter-spacing: 0.1em;
+  color: var(--yellow);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.85rem, 0.75rem + 0.2vw, 1rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--yellow);
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(255,215,0,0.35);
+  color: var(--yellow);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+  nav {
+    padding: 0.9rem 1rem;
   }
 
   .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
+    display: none;
   }
 
-  .nav-links a {
+  .nav-toggle {
+    display: block;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10,10,10,0.98);
+    border-bottom: 1px solid rgba(255,215,0,0.15);
+    padding: 0.5rem 1rem 1rem;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-menu.open {
+    display: flex;
+  }
+
+  .mobile-menu a {
     font-family: 'Space Mono', monospace;
-    font-size: clamp(0.95rem, 0.85rem + 0.22vw, 1.08rem);
-    letter-spacing: 0.15em;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--white);
     text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.2s, color 0.2s;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
 
-  .nav-links a:hover { opacity: 1; color: var(--yellow); }
+  .mobile-menu a:last-child {
+    border-bottom: none;
+  }
 
+  .mobile-menu a:hover {
+    color: var(--yellow);
+  }
+}
   /* === HERO === */
   .hero {
     min-height: 100vh;
@@ -753,7 +821,120 @@
     height: 100%;
     object-fit: contain;
     padding: 1rem;
+  .theme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
   }
+
+@media (max-width: 768px) {
+  .theme-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+  }
+  @media (max-width: 768px) {
+  .hero {
+    padding: 6.5rem 1rem 2.5rem;
+    min-height: auto;
+  }
+
+  .hero-bg-image {
+    width: min(65vw, 280px);
+    right: -3rem;
+    top: 4.5rem;
+    transform: none;
+    opacity: 0.18;
+  }
+
+  .hero-title {
+    font-size: clamp(3.4rem, 14vw, 5.5rem);
+    line-height: 0.92;
+    max-width: 100%;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 4.2vw, 1.25rem);
+    max-width: 100%;
+  }
+
+  .hero-meta {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-value {
+    font-size: 1rem;
+  }
+
+  .hero-cta {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+
+  section {
+    padding: 3.2rem 1rem;
+  }
+
+  .section-header {
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+
+  .info-grid,
+  .busking-grid,
+  .groups-grid,
+  .church-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .schedule-time {
+    padding-top: 0;
+    font-size: 0.95rem;
+  }
+
+  .soundcheck-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 1rem;
+  }
+
+  .countdown-section {
+    padding: 2rem 1rem;
+  }
+
+  .countdown-section::after {
+    display: none;
+  }
+
+  .countdown-inner {
+    gap: 1rem;
+  }
+
+  .countdown-unit {
+    min-width: 68px;
+    padding: 0.7rem 0.8rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -761,16 +942,29 @@
 <!-- NAV -->
 <nav>
   <span class="nav-logo">BiDsburgh</span>
+
+  <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+    ☰
+  </button>
+
   <ul class="nav-links">
     <li><a href="#info">Info</a></li>
     <li><a href="#schedule">Schedule</a></li>
-    <li><a href="#busking">Busking & Sound Check</a></li>
+    <li><a href="#busking">Busking &amp; Sound Check</a></li>
     <li><a href="#groups">Groups</a></li>
     <li><a href="#church">Sunday</a></li>
     <li><a href="#playlist">Playlist</a></li>
   </ul>
-</nav>
 
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#info">Info</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#busking">Busking &amp; Sound Check</a>
+    <a href="#groups">Groups</a>
+    <a href="#church">Sunday</a>
+    <a href="#playlist">Playlist</a>
+  </div>
+</nav>
 <!-- HERO -->
 <section class="hero" style="max-width:none; padding-left:2.5rem; padding-right:2.5rem;">
   <img src="images/BIDbridge.png" alt="BiDsburgh logo" class="hero-bg-image" aria-hidden="true">
@@ -832,7 +1026,7 @@
 <!-- THEME / VERSE -->
 <div id="theme">
   <section style="padding-top: 3rem; padding-bottom: 3rem;">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+   <div class="theme-grid">
       
       <div class="reveal">
         <div style="font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--yellow-dim); margin-bottom:1rem;">This Year's Theme</div>
@@ -1494,6 +1688,21 @@
     navLinks.forEach(link => {
       link.style.color = link.getAttribute('href') === '#' + current ? 'var(--yellow)' : '';
       link.style.opacity = link.getAttribute('href') === '#' + current ? '1' : '';
+    });
+  });
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
     });
   });
 </script>
