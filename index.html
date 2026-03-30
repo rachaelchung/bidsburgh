@@ -1013,6 +1013,70 @@ footer {
   letter-spacing: 0.04em;
 }
 
+/* === FAQ / MISC INFO === */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1.05rem, 0.98rem + 0.18vw, 1.15rem);
+  font-weight: 600;
+  text-align: left;
+  padding: 1.4rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.2s;
+}
+
+  
+.faq-question:hover {
+  color: var(--yellow);
+}
+
+.faq-answer {
+  font-size: clamp(0.98rem, 0.9rem + 0.2vw, 1.08rem);
+  color: rgba(245,240,232,0.6);
+  font-weight: 300;
+  line-height: 1.7;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+}
+
+.faq-toggle {
+  color: var(--yellow);
+  font-size: 1.4rem;
+  font-family: 'Space Mono', monospace;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.faq-item.open .faq-toggle {
+  transform: rotate(45deg);
+}
+
+
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding-bottom: 1.4rem;
+}
+
   
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -1419,7 +1483,7 @@ footer {
           <div class="schedule-event-title">KARAOKE</div>
           <div class="schedule-event-desc">Have some late night fun singing karaoke with your fellow A Capella groups!</div>
           <span class="schedule-tag">Optional</span>
-          <span class="schedule-location">📍 TBD </span>
+          <span class="schedule-location">📍 TBA </span>
         </div>
       </div>
     </div>
@@ -1435,7 +1499,7 @@ footer {
         <span class="schedule-time">Various Times</span>
         <div>
           <div class="schedule-event-title">Church Services</div>
-          <div class="schedule-event-desc">See below for many Church options to attend, or feel free to reach out to anybody in a host group!</div>
+          <div class="schedule-event-desc">Feel free to join people in the host groups for church. Ask them directly, or consult the list below of their suggestions!</div>
         </div>
     </div>
   </section>
@@ -1454,8 +1518,8 @@ footer {
 
     <!-- SOUND CHECK SCHEDULE -->
     <div class="subsection-header reveal">
-      <h3 class="subsection-title">Sound Check Schedule</h3>
-      <p class="subsection-desc">Sound Checks will be staggered throughout the day. Make sure to plan ahead with your group pair for busking and lunch!</p>
+      <h3 class="subsection-title">Soundcheck Schedule</h3>
+      <p class="subsection-desc">Soundchecks will be staggered throughout the day. Make sure to plan ahead with your group pair for busking and lunch!</p>
     </div>
 
     <div class="soundcheck-table reveal">
@@ -1493,11 +1557,7 @@ footer {
         <span class="soundcheck-group">Good News + Mustard Seed</span>
         
       </div>
-      <div class="soundcheck-row soundcheck-buffer">
-        <span class="soundcheck-time">3:30 – 4:00 PM</span>
-        <span class="soundcheck-group">Buffer / Overflow</span>
-        
-      </div>
+
     </div>
 
     <!-- BUSKING PAIRS -->
@@ -1508,7 +1568,7 @@ footer {
 
     <div class="busking-grid reveal">
       <div class="busking-card">
-        <div class="busking-pair-label">Pair A</div>
+        <div class="busking-pair-label">Team "Living Mosaic"</div>
         <div class="busking-groups">
           <span class="busking-group-name">Mosaic (Pitt)</span>
           <span class="busking-plus">×</span>
@@ -1517,14 +1577,14 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBD</div>
-            <div class="busking-location-sub">Address TBD</div>
+            <div class="busking-location-name">TBA</div>
+            <div class="busking-location-sub">Busking routes TBA</div>
           </div>
         </div>
       </div>
 
       <div class="busking-card">
-        <div class="busking-pair-label">Pair B</div>
+        <div class="busking-pair-label">Team "Full Light"</div>
         <div class="busking-groups">
           <span class="busking-group-name">Full Measure (UPenn)</span>
           <span class="busking-plus">×</span>
@@ -1533,14 +1593,14 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBD</div>
-            <div class="busking-location-sub">Address TBD</div>
+            <div class="busking-location-name">TBA</div>
+            <div class="busking-location-sub">Busking routes TBA</div>
           </div>
         </div>
       </div>
 
       <div class="busking-card">
-        <div class="busking-pair-label">Pair C</div>
+        <div class="busking-pair-label">Team "Jubilamus"</div>
         <div class="busking-groups">
           <span class="busking-group-name">Jubilation! (Columbia)</span>
           <span class="busking-plus">×</span>
@@ -1549,14 +1609,14 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBD</div>
-            <div class="busking-location-sub">Address TBD</div>
+            <div class="busking-location-name">TBA</div>
+            <div class="busking-location-sub">Busking routes TBA</div>
           </div>
         </div>
       </div>
 
       <div class="busking-card">
-        <div class="busking-pair-label">Pair D</div>
+        <div class="busking-pair-label">Team "Kindred Current"</div>
         <div class="busking-groups">
           <span class="busking-group-name">Kindred Spirit (Princeton)</span>
           <span class="busking-plus">×</span>
@@ -1565,14 +1625,14 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBD</div>
-            <div class="busking-location-sub">Address TBD</div>
+            <div class="busking-location-name">TBA</div>
+            <div class="busking-location-sub">Busking routes TBA</div>
           </div>
         </div>
       </div>
 
       <div class="busking-card">
-        <div class="busking-pair-label">Pair E</div>
+        <div class="busking-pair-label">Team "Good Seed"</div>
         <div class="busking-groups">
           <span class="busking-group-name">Good News (UMich)</span>
           <span class="busking-plus">×</span>
@@ -1581,20 +1641,11 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBD</div>
-            <div class="busking-location-sub">Address TBD</div>
+            <div class="busking-location-name">TBA</div>
+            <div class="busking-location-sub">Busking routes TBA</div>
           </div>
         </div>
       </div>
-
-    </div>
-
-    <p class="reveal" style="margin-top: 1.5rem; font-family:'Space Mono',monospace; font-size:0.65rem; color:rgba(245,240,232,0.3); letter-spacing:0.1em; text-transform:uppercase;">
-      Locations to be decided soon! Check back often for updates!
-    </p>
-
-  </section>
-</div>
 
 <!-- STRIPE -->
 <div class="yellow-stripe full-stripe"></div>
@@ -1789,6 +1840,13 @@ footer {
     </p>
     <div class="church-grid reveal">
       <div class="church-card">
+        <div class="church-name">First Baptist Church of Pittsburgh</div>
+        <div class="church-detail"><strong>Service</strong> 11:00 AM</div>
+        <div class="church-detail"><strong>Distance</strong> ~15 min walk from CMU</div>
+        <div class="church-detail"><strong>Address</strong> 159 N. Bellefield Ave, Pittsburgh, PA 15213</div>
+      </div>
+      
+      <div class="church-card">
         <div class="church-name">Rennaissance Church</div>
         <div class="church-detail"><strong>Service</strong> 10:00 AM</div>
         <div class="church-detail"><strong>Distance</strong> ~20 min walk from CMU</div>
@@ -1797,7 +1855,7 @@ footer {
       <div class="church-card">
         <div class="church-name">City Reformed Presbyterian Church</div>
         <div class="church-detail"><strong>Service</strong> 10:15 AM</div>
-        <div class="church-detail"><strong>Distance</strong> ~10 min walk from CMU</div>
+        <div class="church-detail"><strong>Distance</strong> ~15 min walk from CMU</div>
         <div class="church-detail"><strong>Address</strong> 5059 Ellsworth Ave, Pittsburgh, PA</div>
       </div>
       <div class="church-card">
@@ -1807,6 +1865,56 @@ footer {
         <div class="church-detail"><strong>Address</strong> 821 South Aiken Avenue, Pittsburgh, PA</div>
       </div>
     </div>
+  <div class="church-grid reveal">
+  <div class="church-card">
+    <div class="church-name">Church of the Ascension</div>
+    <div class="church-detail"><strong>Service</strong> 9:00 AM or 11:00 AM</div>
+    <div class="church-detail"><strong>Distance</strong> ~15 min walk from CMU</div>
+    <div class="church-detail"><strong>Address</strong> 4729 Ellsworth Ave, Pittsburgh, PA 15213</div>
+  </div>
+
+  <div class="church-card">
+    <div class="church-name">Korean Central Church of Pittsburgh</div>
+    <div class="church-detail"><strong>Service</strong> 9:00 AM</div>
+    <div class="church-detail"><strong>Distance</strong> ~20 min walk from CMU</div>
+    <div class="church-detail"><strong>Address</strong> 821 S. Aiken Ave, Pittsburgh, PA 15232</div>
+  </div>
+
+  <div class="church-card">
+    <div class="church-name">Saint Paul Cathedral</div>
+    <div class="church-detail"><strong>Service</strong> 10:00 AM or 12:00 PM</div>
+    <div class="church-detail"><strong>Distance</strong> ~15 min walk from CMU</div>
+    <div class="church-detail"><strong>Address</strong> 108 N. Dithridge St, Pittsburgh, PA 15213</div>
+  </div>
+
+  <div class="church-card">
+    <div class="church-name">Oakland International Fellowship</div>
+    <div class="church-detail"><strong>Service</strong> 11:30 AM</div>
+    <div class="church-detail"><strong>Distance</strong> ~15 min walk from CMU</div>
+    <div class="church-detail"><strong>Address</strong> 134 N. Dithridge St, Pittsburgh, PA 15213</div>
+  </div>
+
+  <div class="church-card">
+    <div class="church-name">Bellefield Presbyterian Church</div>
+    <div class="church-detail"><strong>Service</strong> 11:00 AM</div>
+    <div class="church-detail"><strong>Distance</strong> ~15 min walk from CMU</div>
+    <div class="church-detail"><strong>Address</strong> 4001 Fifth Ave, Pittsburgh, PA 15213</div>
+  </div>
+  
+  <div class="church-card">
+    <div class="church-name">First Trinity Evangelical-Lutheran Church</div>
+    <div class="church-detail"><strong>Service</strong> 11:00 AM</div>
+    <div class="church-detail"><strong>Distance</strong> ~15 min walk from CMU</div>
+    <div class="church-detail"><strong>Address</strong> 531 N. Neville St, Pittsburgh, PA 15213</div>
+  </div>
+
+  <div class="church-card">
+    <div class="church-name">North Way Oakland</div>
+    <div class="church-detail"><strong>Service</strong> 9:15 AM or 11:00 AM</div>
+    <div class="church-detail"><strong>Distance</strong> ~25 min walk from CMU</div>
+    <div class="church-detail"><strong>Address</strong> 428 N. Craig St, Pittsburgh, PA 15213</div>
+  </div>
+</div>
   </section>
 </div>
 
@@ -1823,12 +1931,33 @@ footer {
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          I'm not sure we having an FAQs rn
+          What is Break It Down?
           <span class="faq-toggle">+</span>
         </button>
-        <div class="faq-answer">But if we do we can add this section back</div>
+        <div class="faq-answer">TBA</div>
       </div>
     </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Why is Pittsburgh so busy right now?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">We'd like to tell you it's because Yinzers are super excited for BID (which is very true!). Probably irrelevant confounding factors include CMU having their Spring Carnival, Pitt holding Bigelow Bash, and the city preparing for the NFL Draft, among many, many other things. </div>
+      </div>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is Break It Down?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">TBA</div>
+      </div>
+    </div>
+    
   </section>
 </div>
 
