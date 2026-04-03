@@ -1154,6 +1154,26 @@ footer {
 }
 
 
+   .stream-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+  
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+  }
+  
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  
+
 @media (max-width: 768px) {
   .theme-grid {
     grid-template-columns: 1fr;
@@ -1271,22 +1291,7 @@ footer {
 
   .footer-links a {
     font-size: 0.8rem;
-  }
-  
-  .video-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 560px;
-    aspect-ratio: 16 / 9;
-  }
-  
-  .video-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-  
+  }  
 }
 </style>
 </head>
@@ -1370,6 +1375,7 @@ footer {
 <div id="stream">
   <section class="stream-section">
     <div class="video-wrapper">
+      <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,5vw,4rem); letter-spacing:0.05em; color:var(--white); line-height:1; margin-bottom:1.5rem;">WATCH IT LIVE ON YOUTUBE</h2>
       <iframe
         src="https://www.youtube.com/embed/nP0veCmAzUk?controls=0"
         title="YouTube video player"
@@ -1414,10 +1420,12 @@ footer {
     </div>
     <div class="info-grid reveal">
         <div class="info-card">
+          <a href="#groups">
             <div class="info-card-icon">🎵</div>
             <div class="info-card-label">Break it down</div>
             <div class="info-card-value">11 Christian acapella groups</div>
             <div class="info-card-sub">From across the country</div>
+          </a>
         </div>
         <div class="info-card">
             <div class="info-card-icon">❤️</div>
@@ -1435,7 +1443,7 @@ footer {
         <div class="info-card-icon">🎶</div>
         <div class="info-card-label">Concert Venue</div>
         <div class="info-card-value">First Baptist Church Pittsburgh</div>
-        <div class="info-card-sub">159 N Bellefield Ave</div>
+        <div class="info-card-sub"><a href="https://maps.app.goo.gl/YAQupuxhWmz8BeoBA">159 N Bellefield Ave</a></div>
       </div>
       
     </div>
@@ -1581,10 +1589,12 @@ footer {
       </div>
       <div class="schedule-item">
         <span class="schedule-time">Various Times</span>
-        <div>
+        <div> 
+          <a href="#church">
           <div class="schedule-event-title">Church Services</div>
           <div class="schedule-event-desc">Feel free to join people in the host groups for church. Ask them directly, or consult the list below of their suggestions!</div>
           <span class="schedule-tag">Optional</span>
+          </a>
         </div>
     </div>
   </section>
@@ -2001,6 +2011,20 @@ footer {
         <div class="church-detail"><strong>Service</strong> 11:00 AM</div>
         <div class="church-detail"><strong>Distance</strong> ~20 min walk from CMU</div>
         <div class="church-detail"><strong>Address</strong> 455 Morewood Ave, Pittsburgh, PA</div>
+      </div>
+
+      <div class="church-card">
+        <div class="church-name">Steel City Church</div>
+        <div class="church-detail"><strong>Service</strong> 10:45 AM</div>
+        <div class="church-detail"><strong>Distance</strong> ~10 min drive from CMU</div>
+        <div class="church-detail"><strong>Address</strong> 290 Bigelow St, Pittsburgh, PA</div>
+      </div>
+
+      <div class="church-card">
+        <div class="church-name">Macedonia Church of Pittsburgh</div>
+        <div class="church-detail"><strong>Service</strong> 9 & 11 AM</div>
+        <div class="church-detail"><strong>Distance</strong> ~10 min drive from CMU</div>
+        <div class="church-detail"><strong>Address</strong> 2225 Bedford Ave, Pittsburgh, PA</div>
       </div>
 
     </div>
