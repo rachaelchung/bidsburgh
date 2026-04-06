@@ -1154,6 +1154,26 @@ footer {
 }
 
 
+   .stream-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+  
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+  }
+  
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  
+
 @media (max-width: 768px) {
   .theme-grid {
     grid-template-columns: 1fr;
@@ -1271,7 +1291,7 @@ footer {
 
   .footer-links a {
     font-size: 0.8rem;
-  }
+  }  
 }
 </style>
 </head>
@@ -1292,6 +1312,7 @@ footer {
     <li><a href="#groups" onclick="closeMenu()">Groups</a></li>
     <li><a href="#playlist" onclick="closeMenu()">Playlist</a></li>
     <li><a href="#church" onclick="closeMenu()">Sunday</a></li>
+    <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
   </ul>
 </nav>
 <!-- HERO -->
@@ -1310,12 +1331,16 @@ footer {
       <span class="hero-meta-value">April 11, 2026</span>
     </div>
     <div class="hero-meta-item">
+      <span class="hero-meta-label">Doors open at</span>
+      <span class="hero-meta-value">4:00PM</span>
+    </div>
+    <div class="hero-meta-item">
       <span class="hero-meta-label">Concert starts</span>
       <span class="hero-meta-value">4:30PM</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Location</span>
-      <span class="hero-meta-value">First Baptist Church Pittsburgh</span>
+      <span class="hero-meta-value">First Baptist Church of Pittsburgh</span>
     </div>
   </div>
   <div class="hero-cta">
@@ -1352,6 +1377,20 @@ footer {
   </div>
 </div>
 
+<div id="stream">
+  <section class="stream-section">
+    <div class="video-wrapper">
+      <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,5vw,4rem); letter-spacing:0.05em; color:var(--white); line-height:1; margin-bottom:1.5rem;">WATCH IT LIVE ON YOUTUBE</h2>
+      <iframe
+        src="https://www.youtube.com/embed/nP0veCmAzUk?controls=0"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+</div>
 <!-- THEME / VERSE -->
 <div id="theme">
   <section style="padding-top: 3rem; padding-bottom: 3rem;">
@@ -1386,10 +1425,12 @@ footer {
     </div>
     <div class="info-grid reveal">
         <div class="info-card">
+          <a href="#groups">
             <div class="info-card-icon">🎵</div>
             <div class="info-card-label">Break it down</div>
             <div class="info-card-value">11 Christian acapella groups</div>
             <div class="info-card-sub">From across the country</div>
+          </a>
         </div>
         <div class="info-card">
             <div class="info-card-icon">❤️</div>
@@ -1406,8 +1447,8 @@ footer {
       <div class="info-card">
         <div class="info-card-icon">🎶</div>
         <div class="info-card-label">Concert Venue</div>
-        <div class="info-card-value">First Baptist Church Pittsburgh</div>
-        <div class="info-card-sub">159 N Bellefield Ave</div>
+        <div class="info-card-value">First Baptist Church of Pittsburgh</div>
+        <div class="info-card-sub"><a href="https://maps.app.goo.gl/YAQupuxhWmz8BeoBA">159 N Bellefield Ave</a></div>
       </div>
       
     </div>
@@ -1492,14 +1533,14 @@ footer {
         <div>
           <div class="schedule-event-title">Walking to venue</div>
           <div class="schedule-event-desc">Sing and invite passersby to the concert</div>
-          <span class="schedule-location">📍 First Baptist Church Pittsburgh </span>
+          <span class="schedule-location">📍 First Baptist Church of Pittsburgh </span>
         </div>
       </div>
       <div class="schedule-item">
         <span class="schedule-time">11:00-15:30</span>
         <div>
           <div class="schedule-event-title">Busking/soundcheck/lunch</div>
-          <div class="schedule-event-desc">See details below for more info!</div>
+          <div class="schedule-event-desc">See <a href="#busking">details below</a> for more info!</div>
         </div>
       </div>
       <div class="schedule-item">
@@ -1553,10 +1594,12 @@ footer {
       </div>
       <div class="schedule-item">
         <span class="schedule-time">Various Times</span>
-        <div>
+        <div> 
+          <a href="#church">
           <div class="schedule-event-title">Church Services</div>
           <div class="schedule-event-desc">Feel free to join people in the host groups for church. Ask them directly, or consult the list below of their suggestions!</div>
           <span class="schedule-tag">Optional</span>
+          </a>
         </div>
     </div>
   </section>
@@ -1600,7 +1643,7 @@ footer {
        
       </div>
       <div class="soundcheck-row">
-        <span class="soundcheck-time">1:30 – 1:45 PM</span>
+        <span class="soundcheck-time">1:30 – 2:00 PM</span>
         <span class="soundcheck-group">Jubilation! + Adoremus</span>
        
       </div>
@@ -1634,8 +1677,8 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBA</div>
-            <div class="busking-location-sub">Busking routes TBA</div>
+            <div class="busking-location-name">Shadyside</div>
+            <div class="busking-location-sub"><a href="https://maps.app.goo.gl/KAbNY1Tfsu5WAUzKA">Morrow Park</a>, <a href="https://maps.app.goo.gl/WfrzAg8atCecNn7n6">Walnut St</a></div>
           </div>
         </div>
       </div>
@@ -1650,8 +1693,8 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBA</div>
-            <div class="busking-location-sub">Busking routes TBA</div>
+            <div class="busking-location-name">Pitt campus (North)</div>
+            <div class="busking-location-sub"><a href="https://maps.app.goo.gl/T72e5QrzJSASNCyi9">Peterson Events Center</a>, <a href="https://maps.app.goo.gl/wJhSEif18VJYBorv9">Recreation and Wellness Center</a></div>
           </div>
         </div>
       </div>
@@ -1666,8 +1709,8 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBA</div>
-            <div class="busking-location-sub">Busking routes TBA</div>
+            <div class="busking-location-name">Pitt campus (central)</div>
+            <div class="busking-location-sub"><a href="https://maps.app.goo.gl/pbmMXdLfcTyXAst37">Soldiers and Sailors Memorial</a>, <a href="https://maps.app.goo.gl/BV8NepMzKNLQmeoDA">Schenley Plaza</a></div>
           </div>
         </div>
       </div>
@@ -1682,8 +1725,8 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBA</div>
-            <div class="busking-location-sub">Busking routes TBA</div>
+            <div class="busking-location-name">CMU campus</div>
+            <div class="busking-location-sub"><a href="https://maps.app.goo.gl/RMA1dBLY4PLYp9UKA">The Cut</a>, <a href="https://maps.app.goo.gl/u8A8VwycYitugokM9">Craig St</a></div>
           </div>
         </div>
       </div>
@@ -1698,8 +1741,8 @@ footer {
         <div class="busking-location">
           <span class="busking-location-icon">📍</span>
           <div>
-            <div class="busking-location-name">TBA</div>
-            <div class="busking-location-sub">Busking routes TBA</div>
+            <div class="busking-location-name">Squirrel Hill</div>
+            <div class="busking-location-sub"><a href="https://maps.app.goo.gl/wtzoBhK9CnWqFBBC6">Squirrel Hill</a></div>
           </div>
         </div>
       </div>
@@ -1973,6 +2016,20 @@ footer {
         <div class="church-detail"><strong>Service</strong> 11:00 AM</div>
         <div class="church-detail"><strong>Distance</strong> ~20 min walk from CMU</div>
         <div class="church-detail"><strong>Address</strong> 455 Morewood Ave, Pittsburgh, PA</div>
+      </div>
+
+      <div class="church-card">
+        <div class="church-name">Steel City Church</div>
+        <div class="church-detail"><strong>Service</strong> 10:45 AM</div>
+        <div class="church-detail"><strong>Distance</strong> ~10 min drive from CMU</div>
+        <div class="church-detail"><strong>Address</strong> 290 Bigelow St, Pittsburgh, PA</div>
+      </div>
+
+      <div class="church-card">
+        <div class="church-name">Macedonia Church of Pittsburgh</div>
+        <div class="church-detail"><strong>Service</strong> 9 & 11 AM</div>
+        <div class="church-detail"><strong>Distance</strong> ~10 min drive from CMU</div>
+        <div class="church-detail"><strong>Address</strong> 2225 Bedford Ave, Pittsburgh, PA</div>
       </div>
 
     </div>
